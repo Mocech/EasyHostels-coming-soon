@@ -503,7 +503,7 @@
   <!-- Top bar: live counter -->
   <div class="top-bar">
     <span class="live-dot"></span>
-    <strong id="bar-countt">Join 500+ </strong> students already on the waitlist.
+    <strong id="bar-count">Join 500+ </strong> students already on the waitlist.
   </div>
 
   <!-- Header: logo only, no nav -->
@@ -657,7 +657,7 @@
       miss:   'entry.1127756877',
     };
 
-    const SHEET_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSm_wK6TemXD4pf4KJvDgaU4morK5FkKHZHhKL5JaN5MQVFriZmCMf8VU1SbPxT9IJfxyRl7WLn08Bz/pub?output=csv';
+    // const SHEET_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSm_wK6TemXD4pf4KJvDgaU4morK5FkKHZHhKL5JaN5MQVFriZmCMf8VU1SbPxT9IJfxyRl7WLn08Bz/pub?output=csv';
 
     // Email held in memory — nothing sent to Google until
     // the user finishes step 2 (or skips). This ensures
@@ -667,19 +667,19 @@
     // ─── Live counter ────────────────────────────────────
     let liveCount = 0;
 
-    function loadCount() {
-      if (!SHEET_CSV || SHEET_CSV.includes('REPLACE')) return;
-      fetch(SHEET_CSV + '&t=' + Date.now())
-        .then(r => r.text())
-        .then(csv => {
-          const rows = csv.trim().split('\n').filter(r => r.trim());
-          liveCount = Math.max(0, rows.length - 1);
-          document.getElementById('bar-count').textContent = liveCount || '--';
-        })
-        .catch(() => {});
-    }
-    loadCount();
-    setInterval(loadCount, 60000);
+    // function loadCount() {
+    //   if (!SHEET_CSV || SHEET_CSV.includes('REPLACE')) return;
+    //   fetch(SHEET_CSV + '&t=' + Date.now())
+    //     .then(r => r.text())
+    //     .then(csv => {
+    //       const rows = csv.trim().split('\n').filter(r => r.trim());
+    //       liveCount = Math.max(0, rows.length - 1);
+    //       document.getElementById('bar-count').textContent = liveCount || '--';
+    //     })
+    //     .catch(() => {});
+    // }
+    // loadCount();
+    // setInterval(loadCount, 60000);
 
     // ─── Silent Google Form submit via hidden iframe ──────
     function submitToGoogle(fields) {

@@ -353,7 +353,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: .45rem;
+      gap: .25rem;
       transition: all .2s ease;
     }
     .opt-submit:hover {
@@ -503,7 +503,7 @@
   <!-- Top bar: live counter -->
   <div class="top-bar">
     <span class="live-dot"></span>
-    <strong id="bar-count">--</strong> people have already joined the waitlist
+    <strong id="bar-countt">Join 500+ </strong> students already on the waitlist.
   </div>
 
   <!-- Header: logo only, no nav -->
@@ -531,9 +531,9 @@
 
       <!-- Subline: vague enough to protect the idea -->
       <p class="subline">
-        Something is coming that will change how students across Kenya
-        find a place to stay near their campus.
-        Be among the first ones to know when it arrives.
+      Stop the endless door-to-door search.
+      We’re building a streamlined platform for Kenyan students to discover,
+      virtually tour, and book the perfect hostel in just a few clicks
       </p>
 
       <!-- Step 1: email only -->
@@ -591,12 +591,12 @@
           </div>
           <div class="f-group span2">
             <label for="o-miss">
-              What would you not like to miss?
+              what features should we build first?
               <span class="opt-tag">(optional)</span>
             </label>
             <textarea
               id="o-miss"
-              placeholder="Suggest a feature you would love to see, or tell us about your current struggles finding accommodation near campus."
+              placeholder="WI-FI? security? Lets build what matters to you first!"
             ></textarea>
           </div>
         </div>
@@ -606,7 +606,7 @@
             <i class="fa-solid fa-paper-plane"></i>
             <span id="o-label">Share My Thoughts</span>
           </button>
-          <button class="skip-btn" id="skip-btn" type="button">Skip for now</button>
+          <button class="skip-btn" id="skip-btn" type="button">Skip & submit</button>
         </div>
       </div>
 
@@ -734,7 +734,7 @@
       const btn = document.getElementById('q-btn');
       btn.disabled = true;
       emailEl.disabled = true;
-      document.getElementById('q-label').textContent = 'Got it!';
+      document.getElementById('q-label').textContent = 'Join the Waitlist!';
 
       // email stored in pendingEmail — not sent yet
 

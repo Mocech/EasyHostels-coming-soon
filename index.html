@@ -518,10 +518,10 @@
 </head>
 <body>
 
-  <!-- Top bar: hardcoded counter -->
+  <!-- Top bar: live counter -->
   <div class="top-bar">
     <span class="live-dot"></span>
-    <strong id="bar-count">Join 500+ </strong> students already on the waitlist.
+    <strong id="bar-count">Join 200+ </strong> students already on the waitlist.
   </div>
 
   <!-- Header: logo only, no nav -->
@@ -679,8 +679,31 @@
       miss:   'entry.1127756877',
     };
 
-    let pendingEmail = '';
-    let liveCount = 0;
+    // ─── Counter config ───────────────────────────────────
+    const SHEET_URL  = 'https://script.google.com/macros/s/AKfycbxabOg1yDaYCTLGCcj-ROPWWo0zY2TJwGZKbG9OXg2isikY6C1egj-STJCyycWqYvQggQ/exec';
+    const SEED       = 200; // baseline offset added to real signups
+    let   liveCount  = SEED; // will be updated once fetch resolves
+
+    // ─── Fetch real count from Google Sheet ──────────────
+    async function fetchCount() {
+      try {
+        const res  = await fetch(SHEET_URL);
+        const data = await res.json();
+        const real = Math.max(0, parseInt(data.count) || 0);
+        liveCount  = SEED + real;
+        updateTopBar(liveCount);
+      } catch (e) {
+        // silently keep the seed value if fetch fails
+      }
+    }
+
+    // ─── Update top bar text ─────────────────────────────
+    function updateTopBar(count) {
+      document.getElementById('bar-count').textContent = 'Join ' + count + '+ ';
+    }
+
+    // fetch on page load
+    fetchCount();
 
     // ─── Silent Google Form submit via hidden iframe ──────
     function submitToGoogle(fields) {
@@ -703,8 +726,11 @@
 
     // ─── Show success screen ──────────────────────────────
     function showSuccess(name) {
-      const n = liveCount + 1;
-      liveCount = n;
+      // increment by 1 to account for this new signup
+      liveCount = liveCount + 1;
+
+      // update top bar to reflect the new signup immediately
+      updateTopBar(liveCount);
 
       if (name) {
         const first = name.trim().split(' ')[0];
@@ -712,7 +738,9 @@
         document.getElementById('s-sub').textContent =
           `We'll send you a notification the moment EasyHostel launches, ${first}. You'll be among the very first to get access.`;
       }
-      document.getElementById('s-num').textContent = n > 0 ? '#' + n : '--';
+
+      // success screen shows their exact position number
+      document.getElementById('s-num').textContent = '#' + liveCount;
 
       document.getElementById('opt-panel').classList.remove('show');
       const screen = document.getElementById('success-screen');
@@ -721,6 +749,8 @@
     }
 
     // ─── Step 1: email submit ─────────────────────────────
+    let pendingEmail = '';
+
     function handleEmail() {
       const emailEl = document.getElementById('q-email');
       const email   = emailEl.value.trim();

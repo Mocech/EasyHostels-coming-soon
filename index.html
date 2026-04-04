@@ -677,6 +677,7 @@
       phone:  'entry.1377341290',
       source: 'entry.421281624',
       miss:   'entry.1127756877',
+      campus: 'entry.1970720713', // ✅ add this
     };
 
     // ─── Counter config ───────────────────────────────────
@@ -789,10 +790,11 @@
 
       const name   = document.getElementById('o-name').value.trim();
       const phone  = document.getElementById('o-phone').value.trim();
+      const campus = document.getElementById('o-campus').value.trim();
       const source = document.getElementById('o-source').value;
       const miss   = document.getElementById('o-miss').value.trim();
 
-      submitToGoogle({ email: pendingEmail, name, phone, source, miss });
+      submitToGoogle({ email: pendingEmail, name, phone, campus, source, miss });
 
       setTimeout(() => showSuccess(name), 1100);
     });

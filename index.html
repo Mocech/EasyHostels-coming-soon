@@ -579,14 +579,14 @@
       </div>
 
       <!-- Step 2: optional panel, hidden until email submitted -->
-      <div class="opt-panel" id="opt-panel">
+<div class="opt-panel" id="opt-panel">
   <div class="opt-panel-head">
     <div class="opt-panel-icon">
       <i class="fa-solid fa-star"></i> 
     </div>
     <div>
-      <h3>Make EasyHostels work for you</h3>
-      <p>Tell us a bit more so we can notify you when hostels near your campus are ready.</p>
+<h3>Help us build the perfect hostel for you</h3>
+<p>Tell us your campus and must-have features so we can ensure the best hostels near you are available at launch.</p>
     </div>
   </div>
   <div class="opt-divider"></div>
@@ -594,30 +594,44 @@
   <div class="opt-grid">
     <div class="f-group">
       <label for="o-name">Full Name</label>
-      <input type="text" id="o-name" placeholder="e.g. James Mwangi" />
+      <input type="text" id="o-name" placeholder="e.g. James Mwangi" autocomplete="name" />
     </div>
     <div class="f-group">
       <label for="o-phone">Phone Number</label>
-      <input type="tel" id="o-phone" placeholder="e.g. 0712 345 678" />
+      <input type="tel" id="o-phone" placeholder="e.g. 0712 345 678" autocomplete="tel"/>
     </div>
     <div class="f-group span2">
       <label for="o-campus">Which Campus are you in?</label>
-      <input type="text" id="o-campus" placeholder="e.g. University of Embu" />
+      <input type="text" id="o-campus" placeholder="e.g. University of Embu, Kenyatta University…" />
+    </div>
+
+    <div class="f-group span2">
+      <label for="o-source">How did you hear about us?</label>
+      <select id="o-source">
+        <option value="">-- Select --</option>
+        <option>WhatsApp Group</option>
+        <option>Friend / Classmate</option>
+        <option>Social Media</option>
+        <option>Campus Notice Board</option>
+        <option>Other</option>
+      </select>
     </div>
     
     <div class="f-group span2">
       <label for="o-miss">
-        What's the #1 thing you hate about finding hostels?
+        How can we make finding your next hostel easier?
       </label>
       <textarea
         id="o-miss"
-        placeholder="e.g. 'Fake photos', 'Hidden costs', 'No Wi-Fi'..."
+        placeholder="e.g. Filter by price, see exact location, hot showers, or book online..."
       ></textarea>
+    </div>
     </div>
   </div>
 
   <div class="panel-btns">
     <button class="opt-submit" id="o-btn" type="button">
+      <i class="fa-solid fa-paper-plane"></i>
       <span id="o-label">Save & Finish</span>
     </button>
     <button class="skip-btn" id="skip-btn" type="button">I'll do this later</button>
